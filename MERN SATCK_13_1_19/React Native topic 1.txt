@@ -1,0 +1,742 @@
+React Native Training 
+
+1) npm install -g react-native-cli
+2) react-native init myProject
+3)cd myProject
+4) react-native run-android
+
+if not work u create folder assests
+
+1) mkdir android/app/src/main/assets
+2 ) react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+3) react-native run-android
+
+=================raect native ==========
+React Native is a JavaScript framework for building native mobile apps. It uses the React framework and offers large amount of inbuilt components and APIs.
+
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default class App extends React.Component {
+   render() {
+      return (
+         <View style = {styles.container}>
+            <Text>Open up App.js to start working on your app!</Text>
+            <Text>Changes you make will automatically reload.</Text>
+            <Text>Shake your phone to open the developer menu.</Text>
+         </View>
+      );
+   }
+}
+
+const styles = StyleSheet.create({
+   container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+   },
+});
+
+===================Flexbox========
+
+To achieve the desired layout, flexbox offers three main properties  flexDirection justifyContent and alignItems.
+
+Property	  	Values		Description
+flexDirection	'column', 'row'	Used to specify if elements will be aligned vertically or horizontally.
+justifyContent	'center', 'flex-start', 
+                                     'flex-end', 'space-around',
+                                       'space-between'	  Used to determine how  should elements be distributed inside the container.
+alignItems	'center', 'flex-start', 
+                                   'flex-end', 'stretched' 	Used to determine how should elements be distributed inside the container along the secondary axis (opposite of flexDirection)
+
+
+import React, { Component } from 'react'
+import { View, StyleSheet } from 'react-native'
+
+const Home = (props) => {
+   return (
+      <View style = {styles.container}>
+         <View style = {styles.redbox} />
+         <View style = {styles.bluebox} />
+         <View style = {styles.blackbox} />
+      </View>
+   )
+}
+
+export default Home
+
+const styles = StyleSheet.create ({
+   container: {
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'grey',
+      height: 600
+   },
+   redbox: {
+      width: 100,
+      height: 100,
+      backgroundColor: 'red'
+   },
+   bluebox: {
+      width: 100,
+      height: 100,
+      backgroundColor: 'blue'
+   },
+   blackbox: {
+      width: 100,
+      height: 100,
+      backgroundColor: 'black'
+   },
+})
+
+Exmplele :
+import React, { Component } from 'react';
+import { AppRegistry, View } from 'react-native';
+
+export default class JustifyContentBasics extends Component {
+  render() {
+    return (
+      // Try setting `justifyContent` to `center`.
+      // Try setting `flexDirection` to `row`.
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+};
+
+=====exmple 3=======
+import React, { Component } from 'react';
+import { AppRegistry, View } from 'react-native';
+
+export default class AlignItemsBasics extends Component {
+  render() {
+    return (
+      // Try setting `alignItems` to 'flex-start'
+      // Try setting `justifyContent` to `flex-end`.
+      // Try setting `flexDirection` to `row`.
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+      }}>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{height: 50, backgroundColor: 'skyblue'}} />
+        <View style={{height: 100, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+};
+
+===========Height and Width=============
+
+import React, { Component } from 'react';
+import { AppRegistry, View } from 'react-native';
+
+export default class FixedDimensionsBasics extends Component {
+  render() {
+    return (
+      <View>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
+        <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+}
+
+=====exmpleles========
+import React, { Component } from 'react';
+import { AppRegistry, View } from 'react-native';
+
+export default class FlexDimensionsBasics extends Component {
+  render() {
+    return (
+      // Try removing the `flex: 1` on the parent View.
+      // The parent will not have dimensions, so the children can't expand.
+      // What if you add `height: 300` instead of `flex: 1`?
+      <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: 'powderblue'}} />
+        <View style={{flex: 2, backgroundColor: 'skyblue'}} />
+        <View style={{flex: 3, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+}
+
+============React Native State ==============
+
+Difference between State and Props
+
+The state is mutable while props are immutable. This means that state can be updated in the future while props cannot be updated.
+
+Using State
+This is our root component. We are just importing Home which will be used in most of the chapters.
+
+
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default class App extends React.Component {
+   state = {
+      myState: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, used do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+      culpa qui officia deserunt mollit anim id est laborum.'
+   }
+   render() {
+      return (
+      <View>
+         <Text> {this.state.myState} </Text>
+      </View>
+      );
+   }
+}
+
+================React Native  Props================
+Presentational components should get all data by passing props. Only container components should have state.
+
+Container Component:
+
+We will now understand what a container component is and also how it works.
+
+Theory
+Now we will update our container component. This component will handle the state and pass the props to the presentational component.
+
+Container component is only used for handling state. All functionality related to view(styling etc.) will be handled in the presentational component.
+
+========Presentational Component========
+
+Theory:
+Presentational components should be used only for presenting view to the users. These components do not have state. They receive all data and functions as props.
+
+The best practice is to use as much presentational components as possible.
+
+1) 
+Our component will receive props, return view elements, present text using {props.myText} and call the {props.deleteText} function when a user 
+
+1)  PresentationalComponent.js
+
+import React, { Component } from 'react'
+import { Text, View } from 'react-native'
+
+const PresentationalComponent = (props) => {
+   return (
+      <View>
+         <Text onPress = {props.updateState}>
+            {props.myState}
+         </Text>
+      </View>
+   )
+}
+export default PresentationalComponent
+
+=========app.js========
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import PresentationalComponent from './PresentationalComponent'
+
+export default class App extends React.Component {
+   state = {
+      myState: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, used do eiusmod'
+  
+   }
+   updateState = () => {
+      this.setState({ myState: 'The state is updated' })
+   }
+   render() {
+      return (
+         <View>
+            <PresentationalComponent myState = {this.state.myState} updateState = {this.updateState}/>
+         </View>
+      );
+   }
+}
+
+
+==============
+import React, { Component } from 'react';
+import { AppRegistry, Image } from 'react-native';
+
+export default class Bananas extends Component {
+  render() {
+    let pic = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    };
+    return (
+      <Image source={pic} style={{width: 193, height: 110}}/>
+    );
+  }
+}
+
+===============REACT componds======
+
+===================ListView==============
+
+List.js
+
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
+   
+class List extends Component {
+   state = {
+      names: [
+         {
+            id: 0,
+            name: 'Ben',
+         },
+         {
+            id: 1,
+            name: 'Susan',
+         },
+         {
+            id: 2,
+            name: 'Robert',
+         },
+         {
+            id: 3,
+            name: 'Mary',
+         }
+      ]
+   }
+   alertItemName = (item) => {
+      alert(item.name)
+   }
+   render() {
+      return (
+         <View>
+            {
+               this.state.names.map((item, index) => (
+                  <TouchableOpacity
+                     key = {item.id}
+                     style = {styles.container}
+                     onPress = {() => this.alertItemName(item)}>
+                     <Text style = {styles.text}>
+                        {item.name}
+                     </Text>
+                  </TouchableOpacity>
+               ))
+            }
+         </View>
+      )
+   }
+}
+export default List
+
+const styles = StyleSheet.create ({
+   container: {
+      padding: 10,
+      marginTop: 3,
+      backgroundColor: '#d9f9b1',
+      alignItems: 'center',
+   },
+   text: {
+      color: '#4f603c'
+   }
+})
+
+=======
+import React from 'react'
+import List from './List.js'
+
+const App = () => {
+   return (
+      <List />
+   )
+}
+export default App
+
+=============Text Input==========
+import React, { Component } from 'react';
+import { AppRegistry, Text, TextInput, View } from 'react-native';
+
+export default class PizzaTranslator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
+
+  render() {
+    return (
+
+      <View style={{padding: 10}}>
+        <TextInput
+          style={{height: 40}}
+          placeholder="Type here to translate!"
+           onChangeText={(text) => this.setState({text})}
+        />
+        <Text style={{padding: 10, fontSize: 42}}>
+          {this.state.text.split(' ').map((word) => word && '??').join(' ')}
+        </Text>
+      </View>
+
+    );
+  }
+}
+
+======== Handling Touches==
+Users interact with mobile apps mainly through touch. They can use a combination of gestures, such as tapping on a button, scrolling a list, or zooming on a map. React Native provides components to handle all sorts of common gestures, as well as a comprehensive gesture responder system to allow for more advanced gesture recognition, but the one component you will most likely be interested in is the basic Button
+
+Displaying a basic button:
+
+<Button
+  onPress={() => {
+    Alert.alert('You tapped the button!');
+  }}
+  title="Press Me"
+/>
+
+==========
+import React, { Component } from 'react';
+import { Alert, AppRegistry, Button, StyleSheet, View } from 'react-native';
+
+export default class ButtonBasics extends Component {
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+            color="#841584"
+          />
+        </View>
+        <View style={styles.alternativeLayoutButtonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="This looks great!"
+          />
+          <Button
+            onPress={this._onPressButton}
+            title="OK!"
+            color="#841584"
+          />
+        </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   justifyContent: 'center',
+  },
+  buttonContainer: {
+    margin: 20
+  },
+  alternativeLayoutButtonContainer: {
+    margin: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
+});
+
+
+==============
+import React, { Component } from 'react';
+import { Alert, AppRegistry, Platform, StyleSheet, Text, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, View } from 'react-native';
+
+export default class Touchables extends Component {
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
+
+  _onLongPressButton() {
+    Alert.alert('You long-pressed the button!')
+  }
+
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <TouchableHighlight onPress={this._onPressButton} underlayColor="white">
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>TouchableHighlight</Text>
+          </View>
+        </TouchableHighlight>
+        <TouchableOpacity onPress={this._onPressButton}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>TouchableOpacity</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableNativeFeedback
+            onPress={this._onPressButton}
+            background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>TouchableNativeFeedback</Text>
+          </View>
+        </TouchableNativeFeedback>
+        <TouchableWithoutFeedback
+            onPress={this._onPressButton}
+            >
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>TouchableWithoutFeedback</Text>
+          </View>
+        </TouchableWithoutFeedback>
+        <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton} underlayColor="white">
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Touchable with Long Press</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 60,
+    alignItems: 'center'
+  },
+  button: {
+    marginBottom: 30,
+    width: 260,
+    alignItems: 'center',
+    backgroundColor: '#2196F3'
+  },
+  buttonText: {
+    padding: 20,
+    color: 'white'
+  }
+});
+
+============ scoreview here======
+import React, { Component } from 'react';
+import { AppRegistry, ScrollView, Image, Text } from 'react-native';
+
+export default class IScrolledDownAndWhatHappenedNextShockedMe extends Component {
+  render() {
+      return (
+        <ScrollView>
+          <Text style={{fontSize:96}}>Scroll me plz</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:96}}>If you like</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:96}}>Scrolling down</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:96}}>What's the best</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:96}}>Framework around?</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:80}}>React Native</Text>
+        </ScrollView>
+    );
+  }
+}
+===============
+import React, { Component } from 'react';
+import { Text, Image, View, StyleSheet, ScrollView } from 'react-native';
+
+export default class IScrolledDownAndWhatHappenedNextShockedMe extends Component {
+
+
+ state = {
+      names: [
+         {'name': 'Ben', 'id': 1},
+         {'name': 'Susan', 'id': 2},
+         {'name': 'Robert', 'id': 3},
+         {'name': 'Mary', 'id': 4},
+         {'name': 'Daniel', 'id': 5},
+         {'name': 'Laura', 'id': 6},
+         {'name': 'John', 'id': 7},
+         {'name': 'Debra', 'id': 8},
+         {'name': 'Aron', 'id': 9},
+         {'name': 'Ann', 'id': 10},
+         {'name': 'Steve', 'id': 11},
+         {'name': 'Olivia', 'id': 12}
+      ]
+   }
+  render() {
+      return (
+       
+ <View>
+            <ScrollView>
+               {
+                  this.state.names.map((item, index) => (
+                     <View key = {item.id} style = {styles.item}>
+                        <Text>{item.name}</Text>
+                     </View>
+                  ))
+               }
+            </ScrollView>
+         </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create ({
+   item: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 30,
+      margin: 2,
+      borderColor: '#2a4944',
+      borderWidth: 1,
+      backgroundColor: '#d2f7f1'
+   }
+})
+============Styling==========
+There are a couple of ways to style your elements in React Native.
+
+You can use the style property to add the styles inline. However, this is not the best practice because it can be hard to read the code.
+
+In this chapter, we will use the Stylesheet for styling.
+
+============PresentationalComponent.js=====
+import React, { Component } from 'react'
+import { Text, View, StyleSheet } from 'react-native'
+
+const PresentationalComponent = (props) => {
+   return (
+      <View>
+         <Text style = {styles.myState}>
+            {props.myState}
+         </Text>
+      </View>
+   )
+}
+export default PresentationalComponent
+
+const styles = StyleSheet.create ({
+   myState: {
+      marginTop: 20,
+      textAlign: 'center',
+      color: 'blue',
+      fontWeight: 'bold',
+      fontSize: 20
+   }
+})
+
+========
+App.js
+
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import PresentationalComponent from './PresentationalComponent'
+
+export default class App extends React.Component {
+   state = {
+      myState: 'This is my state'
+   }
+   render() {
+      return (
+         <View>
+            <PresentationalComponent myState = {this.state.myState}/>
+         </View>
+      );
+   }
+}
+============ext Input===============
+
+import React from 'react';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+
+export default class App extends React.Component {
+ 
+
+  state = {
+      email: '',
+      password: ''
+   }
+   handleEmail = (text) => {
+      this.setState({ email: text })
+   }
+   handlePassword = (text) => {
+      this.setState({ password: text })
+   }
+   login = (email, pass) => {
+      alert('email: ' + email + ' password: ' + pass)
+   }
+   render() {
+      return (
+        <View style = {styles.container}>
+            <TextInput style = {styles.input}
+               underlineColorAndroid = "transparent"
+               placeholder = "Email"
+               placeholderTextColor = "#9a73ef"
+               autoCapitalize = "none"
+               onChangeText = {this.handleEmail}/>
+            
+            <TextInput style = {styles.input}
+               underlineColorAndroid = "transparent"
+               placeholder = "Password"
+               placeholderTextColor = "#9a73ef"
+               autoCapitalize = "none"
+               onChangeText = {this.handlePassword}/>
+            
+            <TouchableOpacity
+               style = {styles.submitButton}
+               onPress = {
+                  () => this.login(this.state.email, this.state.password)
+               }>
+               <Text style = {styles.submitButtonText}> Submit </Text>
+            </TouchableOpacity>
+         </View>
+      );
+   }
+}
+
+//=========css
+const styles = StyleSheet.create({
+   container: {
+      paddingTop: 23
+   },
+   input: {
+      margin: 15,
+      height: 40,
+      borderColor: '#7a42f4',
+      borderWidth: 1
+   },
+   submitButton: {
+      backgroundColor: '#7a42f4',
+      padding: 10,
+      margin: 15,
+      height: 40,
+   },
+   submitButtonText:{
+      color: 'white'
+   }
+})

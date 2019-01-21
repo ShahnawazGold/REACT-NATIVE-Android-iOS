@@ -1,0 +1,2 @@
+Tast 1 : make 9th task with simple get set method and inheritance
+Tast 2 : make 9th task with get set method (Anonymous   ) and inheritance
